@@ -55,11 +55,11 @@ You can view the raw exported responses and feedback analysis in our Excel sheet
 
 ### 👥 Testnet User Validations
 To validate our real-world MVP, we tested the platform with 5+ real testnet users using Freighter wallets. Here are their verified Stellar wallet addresses:
-1. `User 1 Wallet Address Here`
-2. `User 2 Wallet Address Here`
-3. `User 3 Wallet Address Here`
-4. `User 4 Wallet Address Here`
-5. `User 5 Wallet Address Here`
+1. `GCCKKVQS54JRCSTB64AQEQTMNVQBJ7JDDTP7US7ESBXIAQPMNL3P23F5`
+2. `GDUFDJ23MIR2KR6FC3VTKA7YTCLJAJY5GL2UIX35HCFCZUPJCW7ZT6K5`
+3. `GBKMNSFTMO5ZLC3TATXXFRC4QUOKD6ERTDWHQCXVB62KSELKG6QAWUJJ`
+4. `GCHB2KGFMWFAM7HOQYUFNPQXAQMAY6U7OLXAP4BEJWIJWXBV6IDKB7DR`
+5. `GDBIJBJQKTW3QCTAYL6KFNS2HHNSI3G7BI4AYORHAUIM5MZGOXQKULGN`
 
 ### MVP Iteration & Future Improvements 🛠️
 
