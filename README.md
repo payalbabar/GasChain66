@@ -22,7 +22,7 @@ Blockchain-powered LPG cylinder management system. This application provides a t
 
 ### 🌟 Project Demo & Links
 - **Live Demo**: [https://gaschain.netlify.app/](https://gaschain.netlify.app/)
-- **Demo Video**: [YouTube/Loom Link Here] <!-- TODO: Replace with video walk-through link -->
+- **Demo Video**: [https://youtu.be/xtzdsvQu-Ew](https://youtu.be/xtzdsvQu-Ew)
 
 1. **Install Dependencies**:
    ```bash
@@ -47,10 +47,10 @@ The app uses a modern "Glassmorphism" aesthetic with a dark sidebar and a clean,
 
 ## User Validation & Feedback 📊
 
-As part of validating our MVP, we collected feedback from real testnet users via Google Forms. 
+As part of validating our MVP, we collected feedback from real testnet users via [this Google Form](https://docs.google.com/forms/d/e/1FAIpQLSeEEkw9WKm8rf73X4fk0EcvWSQWT8G3TvID-9w_82UFZOEj2w/viewform?usp=publish-editor). 
 You can view the raw exported responses and feedback analysis in our Excel sheet below:
 
-- **[View User Feedback (Excel Sheet) 🔗](<link-to-your-excel-sheet-here>)**
+- **[View User Feedback (Excel Sheet) 🔗](https://docs.google.com/spreadsheets/d/1EUd0swodawwLFv8Btvce9rkJ55qmvpYR-9wI3NWukZw/edit?usp=sharing)**
 *(Note: Please replace `<link-to-your-excel-sheet-here>` with the actual Google Drive or Excel link!)*
 
 ### 👥 Testnet User Validations
