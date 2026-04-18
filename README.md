@@ -21,7 +21,7 @@ Blockchain-powered LPG cylinder management system. This application provides a t
 ## Getting Started 🏁
 
 ### 🌟 Project Demo & Links
-- **Live Demo**: [https://gaschain.netlify.app/](https://gaschain.netlify.app/)
+- **Live Demo**: [https://lpg-connect-wallet.vercel.app/](https://lpg-connect-wallet.vercel.app/)
 - **Demo Video**: [https://youtu.be/xtzdsvQu-Ew](https://youtu.be/xtzdsvQu-Ew)
 
 1. **Install Dependencies**:
