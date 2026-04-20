@@ -1,6 +1,7 @@
 # GasChain ⛽⛓️
 
-[![CI/CD Pipeline](https://github.com/payalbabar/GasChainProject/actions/workflows/ci.yml/badge.svg)](https://github.com/payalbabar/GasChainProject/actions)
+[![CI/CD Pipeline](https://github.com/payalbabar/lpg_connectWallet/actions/workflows/ci.yml/badge.svg)](https://github.com/payalbabar/lpg_connectWallet/actions)
+
 
 Blockchain-powered LPG cylinder management system. This application provides a transparent, immutable ledger for tracking bookings, supply chains, and government subsidies on the Stellar Network.
 
@@ -89,7 +90,8 @@ Based on the initial user feedback, we've planned and started implementing key i
 **Iteration 1: Wallet Connection UX Improvement**
 *Feedback*: Users felt anxious during the wallet connection phase because there was no visual feedback that a background request was happening.
 *Improvement*: Added dynamic loading states and spinners to the "Connect Wallet" button on the Landing Page.
-- **[View Git Commit for this Iteration](https://github.com/payalbabar/GasChainProject/commit/a4bf2c1db2a343d22c584a5527aef92f2041f60e)**
+- **[View Git Commit for this Iteration](https://github.com/payalbabar/lpg_connectWallet/commit/a4bf2c1db2a343d22c584a5527aef92f2041f60e)**
+
 
 **Future Roadmap Based on User Feedback:**
 - **Enhanced Payment Tracking**: Users want to see XLM transaction links directly in the dashboard after booking.
