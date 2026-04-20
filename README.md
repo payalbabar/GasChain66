@@ -16,16 +16,7 @@ Blockchain-powered LPG cylinder management system. This application provides a t
 
 ## Screenshots 📸
 
-| Landing Page | Dashboard |
-| :---: | :---: |
-| ![Landing](https://raw.githubusercontent.com/payalbabar/lpg_connectWallet/main/public/screenshots/landing.png) | ![Dashboard](https://raw.githubusercontent.com/payalbabar/lpg_connectWallet/main/public/screenshots/dashboard.png) |
-
-
-
-| Booking & Subsidy | Supply Chain Tracking |
-| :---: | :---: |
-| ![Booking](https://raw.githubusercontent.com/payalbabar/lpg_connectWallet/main/public/screenshots/booking.png) | ![Supply Chain](https://raw.githubusercontent.com/payalbabar/lpg_connectWallet/main/public/screenshots/supply_chain.png) |
-
+*(Functional MVP screenshots will be added here!)*
 
 
 
