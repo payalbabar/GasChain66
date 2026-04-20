@@ -16,18 +16,26 @@ Blockchain-powered LPG cylinder management system. This application provides a t
 
 ## Screenshots 📸
 
-<img width="1920" height="1080" alt="Screenshot 2026-04-20 174658" src="https://github.com/user-attachments/assets/4c12520c-0e6e-48e3-be67-3687531bd5c6" />
-<img width="1920" height="1080" alt="Screenshot 2026-04-20 174638" src="https://github.com/user-attachments/assets/dc34e62f-bf3b-4654-869e-0c782b93cb4a" />
-<img width="1920" height="1080" alt="Screenshot 2026-04-20 174552" src="https://github.com/user-attachments/assets/1ca4065d-6e5a-4283-8a57-1c4e2ead74dc" />
-<img width="1920" height="1080" alt="Screenshot 2026-04-20 173343" src="https://github.com/user-attachments/assets/1f812def-9341-47c1-bf50-02d71354941b" />
-<img width="1920" height="1080" alt="Screenshot 2026-04-20 173323" src="https://github.com/user-attachments/assets/68c39d28-3c08-4345-823a-5d88dc87a9ac" />
-<img width="1920" height="1080" alt="Screenshot 2026-04-20 173309" src="https://github.com/user-attachments/assets/316b96d0-a4d8-48f6-afcc-9a0bcdb97034" />
-<img width="1920" height="1080" alt="Screenshot 2026-04-20 173300" src="https://github.com/user-attachments/assets/8b24de78-b4e0-4f75-8bbf-73ad896ae373" />
-<img width="1920" height="1080" alt="Screenshot 2026-04-20 173252" src="https://github.com/user-attachments/assets/56cc50f7-0895-4fa7-8594-a502f0bdee78" />
-<img width="1920" height="1080" alt="Screenshot 2026-04-20 173232" src="https://github.com/user-attachments/assets/b345e54a-e4f8-4158-a42f-d2297fc3de93" />
+#### 🌐 Core Application
+| Landing Page | Dashboard |
+| :---: | :---: |
+| ![Landing](https://raw.githubusercontent.com/payalbabar/lpg_connectWallet/main/public/screenshots/landing.png) | ![Dashboard](https://raw.githubusercontent.com/payalbabar/lpg_connectWallet/main/public/screenshots/dashboard.png) |
 
 
+#### 📑 Booking & Tracking
+| Booking Form | Supply Chain Tracking |
+| :---: | :---: |
+| ![Booking](https://raw.githubusercontent.com/payalbabar/lpg_connectWallet/main/public/screenshots/book.png) | ![Tracking](https://raw.githubusercontent.com/payalbabar/lpg_connectWallet/main/public/screenshots/supply_chain.png) |
 
+#### 💳 Wallet & Payment Flow
+| Connection Request | Transaction Confirmation |
+| :---: | :---: |
+| ![Wallet Connect](https://raw.githubusercontent.com/payalbabar/lpg_connectWallet/main/public/screenshots/wallet_connect.png) | ![Wallet Confirm](https://raw.githubusercontent.com/payalbabar/lpg_connectWallet/main/public/screenshots/wallet_confirm.png) |
+
+#### 📊 Registry & Ledger
+| Subsidy Management | Blockchain Ledger |
+| :---: | :---: |
+| ![Subsidies](https://raw.githubusercontent.com/payalbabar/lpg_connectWallet/main/public/screenshots/subsidies.png) | ![Ledger](https://raw.githubusercontent.com/payalbabar/lpg_connectWallet/main/public/screenshots/ledger.png) |
 
 ## Tech Stack 🛠️
 
