@@ -24,6 +24,12 @@ GasChain is a Next-Generation LPG Cylinder Management System built to address in
   - `SupplyEvent` & `SupplyBlock`: Forms an immutable, linked-list data structure simulating a blockchain. Each block points to a previous hash, securing the supply chain history.
   - `Subsidy`: Automated and transparent tracking of reimbursements to end consumers.
 
+### 2.4 Smart Contracts (Soroban)
+- **Framework**: Soroban Rust SDK
+- **Role**: Decentralized logic for booking and validation on the Stellar network.
+- **Contracts**: Located in the `/contracts` directory, written in Rust.
+
+
 ## 3. High-Level Workflows
 
 ### 3.1 Gas Booking & Payment
@@ -44,3 +50,11 @@ GasChain is a Next-Generation LPG Cylinder Management System built to address in
 - **Decentralized Authentication**: Trust is established via the Stellar network using public-key cryptography (Freighter).
 - **Ledger Immutability**: Implementing hash-chaining in the Base44 database ensures any alterations to past events invalidate the entire subsequent chain. 
 - **Role-Based Access Control (RBAC)**: Enforced both on the client via conditional rendering and on the Base44 entity permission layer.
+
+## 5. CI/CD & Deployment
+- **Pipeline**: Automated via **GitHub Actions**. The `.github/workflows/ci.yml` pipeline handles:
+  - Linting (ESLint)
+  - Type-checking (TSC)
+  - Production builds (Vite)
+- **Staging/Production**: Automatically deployed to **Vercel** on every push to the `main` branch.
+

@@ -1,6 +1,9 @@
 # GasChain ⛽⛓️
 
-Blockchain-powered LPG cylinder management system. This application provides a transparent, immutable ledger for tracking bookings, supply chains, and government subsidies.
+[![CI/CD Pipeline](https://github.com/payalbabar/GasChainProject/actions/workflows/ci.yml/badge.svg)](https://github.com/payalbabar/GasChainProject/actions)
+
+Blockchain-powered LPG cylinder management system. This application provides a transparent, immutable ledger for tracking bookings, supply chains, and government subsidies on the Stellar Network.
+
 
 ## Features 🚀
 
@@ -10,6 +13,17 @@ Blockchain-powered LPG cylinder management system. This application provides a t
 - **Immutable Ledger**: Full exploration of all blockchain blocks and transaction history.
 - **Rich Dashboard**: Overview of system activity with dynamic stats and recent blocks.
 
+## Screenshots 📸
+
+| Landing Page | Dashboard |
+| :---: | :---: |
+| ![Landing](/screenshots/landing.png) | ![Dashboard](/screenshots/dashboard.png) |
+
+| Booking & Subsidy | Supply Chain Tracking |
+| :---: | :---: |
+| ![Booking](/screenshots/booking.png) | ![Supply Chain](/screenshots/supply_chain.png) |
+
+
 ## Tech Stack 🛠️
 
 - **Frontend**: React + Vite
@@ -17,6 +31,13 @@ Blockchain-powered LPG cylinder management system. This application provides a t
 - **Backend / DB**: Base44 SDK (Simulated Blockchain Entities)
 - **Icons**: Lucide React
 - **Fonts**: Inter & JetBrains Mono
+
+## Project Structure 🏗️
+
+- **`/src`**: Frontend React application logic.
+- **[`/contracts`](./contracts)**: Soroban (Rust) smart contracts for on-chain booking validation.
+- **`.github/workflows`**: Automated CI/CD pipeline using GitHub Actions.
+
 
 ## Getting Started 🏁
 
@@ -51,7 +72,7 @@ As part of validating our MVP, we collected feedback from real testnet users via
 You can view the raw exported responses and feedback analysis in our Excel sheet below:
 
 - **[View User Feedback (Excel Sheet) 🔗](https://docs.google.com/spreadsheets/d/1EUd0swodawwLFv8Btvce9rkJ55qmvpYR-9wI3NWukZw/edit?usp=sharing)**
-*(Note: Please replace `<link-to-your-excel-sheet-here>` with the actual Google Drive or Excel link!)*
+
 
 ### 👥 Testnet User Validations
 To validate our real-world MVP, we tested the platform with 5+ real testnet users using Freighter wallets. Here are their verified Stellar wallet addresses:
