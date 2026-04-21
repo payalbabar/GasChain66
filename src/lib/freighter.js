@@ -73,14 +73,17 @@ export const sendXLM = async (destination, amount) => {
 
   try {
     const res = await server.submitTransaction(signedTransaction);
+    console.log("Stellar Transaction Success:", res.hash);
     return res;
   } catch (error) {
     const errData = error.response?.data;
-    console.error("Stellar Submission Error:", errData ? JSON.stringify(errData, null, 2) : error);
+    console.error("Stellar Submission Error:", errData ? JSON.stringify(errData) : error.message);
+    
+    // Extract specific Horizon error codes for better user feedback
     if (errData?.extras?.result_codes) {
-      const codes = errData.extras.result_codes;
-      const opCodes = codes.operations ? ` (${codes.operations.join(', ')})` : '';
-      throw new Error(`Transaction Failed: ${codes.transaction}${opCodes}`);
+      const { transaction, operations } = errData.extras.result_codes;
+      const detail = operations ? ` (${operations.join(', ')})` : '';
+      throw new Error(`Stellar Error: ${transaction}${detail}`);
     }
     throw error;
   }

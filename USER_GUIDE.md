@@ -10,7 +10,7 @@ Welcome to **GasChain**, the decentralized LPG cylinder management protocol. Thi
 - **Network**: Switch Freighter to **Testnet** (Settings -> Network -> Testnet).
 
 ### 2. Connecting your Wallet
-1. Open the [GasChain Web App](https://lpg-connect-wallet.vercel.app/).
+1. Open the [GasChain Web App](https://splendorous-clafoutis-f7b51c.netlify.app/).
 2. Click **"Connect Wallet"** on the landing page.
 3. Approve the connection request in your Freighter extension.
 4. Once connected, your wallet address and XLM balance will appear in the top-right corner.
