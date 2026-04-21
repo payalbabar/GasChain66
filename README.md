@@ -1,6 +1,6 @@
 # GasChain | LPG Connect ⛽⛓️
 
-[![CI/CD Pipeline](https://github.com/payalbabar/lpg_connectWallet/actions/workflows/ci.yml/badge.svg)](https://github.com/payalbabar/lpg_connectWallet/actions)
+[![CI/CD Pipeline](https://github.com/payalbabar/GasChain66/actions/workflows/ci.yml/badge.svg)](https://github.com/payalbabar/GasChain66/actions)
 
 
 Blockchain-powered LPG cylinder management system. This application provides a transparent, immutable ledger for tracking bookings, supply chains, and government subsidies on the Stellar Network.
