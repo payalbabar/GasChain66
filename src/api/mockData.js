@@ -79,233 +79,75 @@ export const mockData = {
   },
   initialize: () => {
     // Add some initial data if empty
-    if (getStorage(STORAGE_KEYS.BOOKINGS).length === 0) {
-      const bId = generateBookingId();
-      const bHash = generateHash({ bookingId: bId });
+      const sampleBookings = [];
+      const sampleBlocks = [];
+      const sampleSubsidies = [];
+      
+      const names = ["Aarav", "Priya", "Rahul", "Anita", "Vikram", "Sanjay", "Deepa", "Amit", "Kavita", "Rohan"];
+      const states = Object.keys(Object.keys(window.STATES_CITIES || { Maharashtra: [] })); // Fallback if not globally available, but we'll use hardcoded for safety
+      const cities = ["Mumbai", "Delhi", "Bengaluru", "Ahmedabad", "Chennai", "Lucknow", "Pune", "Noida", "Surat", "Kanpur"];
+      
+      let prevHash = "0x0000000000000000";
 
-      // --- Delivered booking ---
-      const deliveredBooking = {
-        id: '1',
-        booking_id: bId,
-        customer_name: 'John Doe',
-        customer_phone: '9876543210',
-        customer_address: '123 Gas Lane, Energy City, Maharashtra',
-        cylinder_type: '14.2kg_domestic',
-        quantity: 1,
-        status: 'delivered',
-        payment_method: 'online',
-        total_amount: 903,
-        subsidy_applied: 200,
-        final_amount: 703,
-        block_hash: bHash,
-        created_date: new Date(Date.now() - 3600000).toISOString(),
-        updated_date: new Date().toISOString(),
-      };
+      for (let i = 0; i < 35; i++) {
+        const bId = generateBookingId();
+        const bHash = generateHash({ bookingId: bId, i });
+        const name = names[i % names.length] + " " + (i > 10 ? String.fromCharCode(65 + (i % 26)) : "Verma");
+        const status = i < 5 ? (i === 0 ? "pending" : "in_transit") : "delivered";
+        const date = new Date(Date.now() - (35 - i) * 3600000 * 4); // Spacing out by 4 hours
+        
+        const booking = {
+          id: String(i + 1),
+          booking_id: bId,
+          customer_name: name,
+          customer_phone: `9${Math.floor(100000000 + Math.random() * 900000000)}`,
+          customer_address: `${100 + i}, Main St, ${cities[i % cities.length]}, India`,
+          cylinder_type: i % 3 === 0 ? '14.2kg_domestic' : (i % 3 === 1 ? '19kg_commercial' : '5kg_portable'),
+          quantity: (i % 2) + 1,
+          status,
+          payment_method: i % 4 === 0 ? 'freighter' : 'online',
+          total_amount: 900 * ((i % 2) + 1),
+          subsidy_applied: (i % 3 === 0) ? 200 * ((i % 2) + 1) : 0,
+          final_amount: (900 * ((i % 2) + 1)) - ((i % 3 === 0) ? 200 * ((i % 2) + 1) : 0),
+          block_hash: bHash,
+          created_date: date.toISOString(),
+          updated_date: date.toISOString(),
+        };
 
-      // --- Active order 1: PENDING ---
-      const bId2 = generateBookingId();
-      const bHash2 = generateHash({ bookingId: bId2 });
-      const pendingBooking = {
-        id: '2',
-        booking_id: bId2,
-        customer_name: 'Priya Sharma',
-        customer_phone: '9123456780',
-        customer_address: 'Flat 204, Rose Apts, Andheri West, Mumbai, Maharashtra - 400058',
-        cylinder_type: '14.2kg_domestic',
-        quantity: 2,
-        status: 'pending',
-        payment_method: 'freighter',
-        total_amount: 1806,
-        subsidy_applied: 400,
-        final_amount: 1406,
-        block_hash: bHash2,
-        metadata: JSON.stringify({ network: "Stellar Testnet", priceXLM: "140.6" }),
-        created_date: new Date(Date.now() - 300000).toISOString(),
-        updated_date: new Date(Date.now() - 300000).toISOString(),
-      };
+        const block = {
+          id: `b${i + 1}`,
+          block_index: i + 1,
+          block_hash: bHash,
+          previous_hash: prevHash,
+          timestamp: date.toISOString(),
+          booking_id: bId,
+          event_type: i === 0 ? 'booking_created' : (status === 'delivered' ? 'delivered' : 'in_transit'),
+          event_data: JSON.stringify({ status, payment: booking.payment_method }),
+          location: cities[i % cities.length],
+          verified_by: i % 4 === 0 ? 'Freighter Node' : 'System Node',
+          created_date: date.toISOString(),
+        };
 
-      // --- Active order 2: CONFIRMED ---
-      const bId3 = generateBookingId();
-      const bHash3 = generateHash({ bookingId: bId3 });
-      const confirmedBooking = {
-        id: '3',
-        booking_id: bId3,
-        customer_name: 'Rahul Verma',
-        customer_phone: '9988776655',
-        customer_address: 'B-12, Sector 62, Noida, Uttar Pradesh - 201301',
-        cylinder_type: '19kg_commercial',
-        quantity: 1,
-        status: 'confirmed',
-        payment_method: 'online',
-        total_amount: 1850,
-        subsidy_applied: 0,
-        final_amount: 1850,
-        block_hash: bHash3,
-        distributor_name: 'GasChain Central Depot',
-        created_date: new Date(Date.now() - 1800000).toISOString(),
-        updated_date: new Date(Date.now() - 900000).toISOString(),
-      };
+        if (booking.subsidy_applied > 0) {
+          sampleSubsidies.push({
+            id: `s${i + 1}`,
+            subsidy_type: 'ujjwala',
+            scheme: 'Ujjwala Yojana',
+            amount: booking.subsidy_applied,
+            status: status === 'delivered' ? 'credited' : 'pending',
+            booking_id: bId,
+            beneficiary_name: name,
+            created_date: date.toISOString(),
+          });
+        }
 
-      // --- Active order 3: DISPATCHED ---
-      const bId4 = generateBookingId();
-      const bHash4 = generateHash({ bookingId: bId4 });
-      const dispatchedBooking = {
-        id: '4',
-        booking_id: bId4,
-        customer_name: 'Anita Desai',
-        customer_phone: '8877665544',
-        customer_address: '45, MG Road, Indiranagar, Bengaluru, Karnataka - 560038',
-        cylinder_type: '5kg_portable',
-        quantity: 3,
-        status: 'dispatched',
-        payment_method: 'online',
-        total_amount: 1305,
-        subsidy_applied: 0,
-        final_amount: 1305,
-        block_hash: bHash4,
-        distributor_name: 'South Zone Distributor',
-        created_date: new Date(Date.now() - 5400000).toISOString(),
-        updated_date: new Date(Date.now() - 1200000).toISOString(),
-      };
+        sampleBookings.push(booking);
+        sampleBlocks.push(block);
+        prevHash = bHash;
+      }
 
-      // --- Active order 4: IN TRANSIT ---
-      const bId5 = generateBookingId();
-      const bHash5 = generateHash({ bookingId: bId5 });
-      const inTransitBooking = {
-        id: '5',
-        booking_id: bId5,
-        customer_name: 'Vikram Patel',
-        customer_phone: '7766554433',
-        customer_address: '21, SG Highway, Bodakdev, Ahmedabad, Gujarat - 380054',
-        cylinder_type: '47.5kg_industrial',
-        quantity: 1,
-        status: 'in_transit',
-        payment_method: 'freighter',
-        total_amount: 3650,
-        subsidy_applied: 0,
-        final_amount: 3650,
-        block_hash: bHash5,
-        distributor_name: 'West Zone Distributor',
-        metadata: JSON.stringify({ network: "Stellar Testnet", priceXLM: "365.0", txHash: "0xabc123def456" }),
-        created_date: new Date(Date.now() - 7200000).toISOString(),
-        updated_date: new Date(Date.now() - 600000).toISOString(),
-      };
-
-      // --- Blockchain blocks for all bookings ---
-      const deliveredBlock = {
-        id: 'b1',
-        block_index: 1,
-        block_hash: bHash,
-        previous_hash: '0x0000000000000000',
-        timestamp: new Date(Date.now() - 3600000).toISOString(),
-        booking_id: bId,
-        event_type: 'delivered',
-        event_data: JSON.stringify({ status: 'delivered' }),
-        location: '123 Gas Lane',
-        verified_by: 'System Node',
-        created_date: new Date(Date.now() - 3600000).toISOString(),
-      };
-
-      const pendingBlock = {
-        id: 'b2',
-        block_index: 2,
-        block_hash: bHash2,
-        previous_hash: bHash,
-        timestamp: new Date(Date.now() - 300000).toISOString(),
-        booking_id: bId2,
-        event_type: 'booking_created',
-        event_data: JSON.stringify({ customer: 'Priya Sharma', xlm_payment: true }),
-        location: 'Stellar Node (Testnet)',
-        verified_by: 'Freighter',
-        created_date: new Date(Date.now() - 300000).toISOString(),
-      };
-
-      const confirmedBlock = {
-        id: 'b3',
-        block_index: 3,
-        block_hash: bHash3,
-        previous_hash: bHash2,
-        timestamp: new Date(Date.now() - 1800000).toISOString(),
-        booking_id: bId3,
-        event_type: 'booking_created',
-        event_data: JSON.stringify({ customer: 'Rahul Verma', method: 'online' }),
-        location: 'Public Node (India)',
-        verified_by: 'System',
-        created_date: new Date(Date.now() - 1800000).toISOString(),
-      };
-
-      const confirmedBlock2 = {
-        id: 'b3b',
-        block_index: 4,
-        block_hash: generateBlockHash(bHash3, { event: 'cylinder_assigned' }),
-        previous_hash: bHash3,
-        timestamp: new Date(Date.now() - 900000).toISOString(),
-        booking_id: bId3,
-        event_type: 'cylinder_assigned',
-        event_data: JSON.stringify({ status: 'confirmed' }),
-        location: 'Distribution Center',
-        verified_by: 'Admin Node',
-        created_date: new Date(Date.now() - 900000).toISOString(),
-      };
-
-      const dispatchedBlock = {
-        id: 'b4',
-        block_index: 5,
-        block_hash: bHash4,
-        previous_hash: bHash3,
-        timestamp: new Date(Date.now() - 5400000).toISOString(),
-        booking_id: bId4,
-        event_type: 'dispatched',
-        event_data: JSON.stringify({ status: 'dispatched' }),
-        location: 'South Zone Warehouse, Bengaluru',
-        verified_by: 'Admin Node',
-        created_date: new Date(Date.now() - 1200000).toISOString(),
-      };
-
-      const inTransitBlock = {
-        id: 'b5',
-        block_index: 6,
-        block_hash: bHash5,
-        previous_hash: bHash4,
-        timestamp: new Date(Date.now() - 7200000).toISOString(),
-        booking_id: bId5,
-        event_type: 'in_transit',
-        event_data: JSON.stringify({ status: 'in_transit', vehicle: 'GJ-01-AB-1234' }),
-        location: 'En Route — Ahmedabad Highway',
-        verified_by: 'GPS Tracker Node',
-        created_date: new Date(Date.now() - 600000).toISOString(),
-      };
-
-      // --- Subsidies ---
-      const subsidy1 = {
-        id: 's1',
-        subsidy_type: 'ujjwala',
-        scheme: 'Ujjwala Yojana',
-        amount: 200,
-        status: 'credited',
-        booking_id: bId,
-        beneficiary_name: 'John Doe',
-        created_date: new Date(Date.now() - 1800000).toISOString(),
-      };
-
-      const subsidy2 = {
-        id: 's2',
-        subsidy_type: 'ujjwala',
-        scheme: 'Ujjwala Yojana',
-        amount: 400,
-        status: 'pending',
-        booking_id: bId2,
-        beneficiary_name: 'Priya Sharma',
-        created_date: new Date(Date.now() - 200000).toISOString(),
-      };
-
-      setStorage(STORAGE_KEYS.BOOKINGS, [
-        inTransitBooking, dispatchedBooking, confirmedBooking, pendingBooking, deliveredBooking
-      ]);
-      setStorage(STORAGE_KEYS.BLOCKS, [
-        inTransitBlock, dispatchedBlock, confirmedBlock2, confirmedBlock, pendingBlock, deliveredBlock
-      ]);
-      setStorage(STORAGE_KEYS.SUBSIDIES, [subsidy2, subsidy1]);
-    }
+      setStorage(STORAGE_KEYS.BOOKINGS, sampleBookings.reverse());
+      setStorage(STORAGE_KEYS.BLOCKS, sampleBlocks.reverse());
+      setStorage(STORAGE_KEYS.SUBSIDIES, sampleSubsidies.reverse());
   }
 };

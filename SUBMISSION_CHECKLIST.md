@@ -16,7 +16,7 @@ This checklist confirms that the **GasChain | LPG Connect** project satisfies al
 
 ## 3. DevOps & Deployment
 - [x] **CI/CD Pipeline**: GitHub Actions configured for automated linting and builds.
-- [x] **Live Production URL**: Deployed to [lpg-connect-wallet.vercel.app](https://lpg-connect-wallet.vercel.app/).
+- [x] **Live Production URL**: Deployed to [splendorous-clafoutis-f7b51c.netlify.app](https://splendorous-clafoutis-f7b51c.netlify.app/).
 - [x] **Clean Repository**: Removed unnecessary logs, scratch files, and dead code.
 
 ## 4. Presentation & Demo
