@@ -147,7 +147,7 @@ To eliminate the barrier of entry for new users (acquiring XLM for gas fees), Ga
 - **Production Monitoring**: System health, active nodes, and data synchronization status are tracked on our [Monitoring Dashboard](/dashboard/metrics).
     - *Screenshot Proof*: ![Monitoring Dashboard](https://raw.githubusercontent.com/payalbabar/lpg_connectWallet/main/public/screenshots/dashboard.png)
 - **Security Audit**: [Check completed Security Checklist](./SECURITY_CHECKLIST.md)
-- **Community Impact**: [View Project Twitter Announcement](https://twitter.com/payalbabar/status/1782000000000)
+- **Community Impact**: [View Project Announcement on X (Twitter)](https://x.com/babar_payal/status/2046551540832325888?s=20)
 
 ---
 
