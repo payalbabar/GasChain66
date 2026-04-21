@@ -141,8 +141,9 @@ To eliminate the barrier of entry for new users (acquiring XLM for gas fees), Ga
 - **Benefit**: Users can interact with the GasChain ecosystem with zero initial XLM balance.
 - **Implementation**: See `src/lib/freighter.js`.
 
-## 📈 Monitoring & Scalability
+## 📈 Monitoring, Indexing & Scalability
 - **Live Metrics Dashboard**: [View Real-time Data](/dashboard/metrics)
+- **Data Indexing Approach**: GasChain indexes all supply chain events into an immutable linked list. We fetch and aggregate this indexed blockchain data in real-time on our [Blockchain Ledger](/dashboard/ledger) endpoint to show verified chains and blocks.
 - **Security Audit**: [Check completed Security Checklist](./SECURITY_CHECKLIST.md)
 - **Community Impact**: [View Project Twitter Announcement](https://twitter.com/payalbabar/status/1782000000000)
 
