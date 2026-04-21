@@ -64,7 +64,7 @@ Blockchain-powered LPG cylinder management system. This application provides a t
 
 ### 🌟 Project Demo & Links
 - **Live Demo**: [https://splendorous-clafoutis-f7b51c.netlify.app/](https://splendorous-clafoutis-f7b51c.netlify.app/)
-- **Demo Video**: [https://youtu.be/xtzdsvQu-Ew](https://youtu.be/xtzdsvQu-Ew)
+- **Demo Video**: [https://youtu.be/_CB9SU0Sr6U?si=thrHSEzWk7EsNNH_](https://youtu.be/_CB9SU0Sr6U?si=thrHSEzWk7EsNNH_)
 
 1. **Install Dependencies**:
    ```bash
