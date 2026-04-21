@@ -4,46 +4,57 @@ import * as StellarSdk from "stellar-sdk";
 const server = new StellarSdk.Horizon.Server("https://horizon-testnet.stellar.org");
 const networkPassphrase = StellarSdk.Networks.TESTNET;
 
+/**
+ * Check if Freighter is installed and connected.
+ * Handles both old (boolean) and new ({ isConnected }) API return shapes.
+ */
 export const checkConnection = async () => {
-  const result = await isConnected();
-  return result.isConnected; // Some versions return boolean directly, some return { isConnected: boolean }. The code user provided assumes `result.isConnected`. Wait, looking at the user code, it says `return result.isConnected;`, but the Freighter docs say `isConnected()` returns a boolean directly or `{ isConnected: boolean }` depending on version? Actually, `isConnected()` returns a boolean if installed or returns true. But let's stick to the user's code for safety unless there's an issue. But typically newer versions return a boolean. Let's just use what user gave: `return result.isConnected;` wait, if it returns boolean, `result.isConnected` is undefined. The user's code: `const result = await isConnected(); return result.isConnected;`. Wait, the freighter api might have changed. Let's just use `const result = await isConnected(); return typeof result === 'object' ? result.isConnected : result;`.
+  try {
+    const result = await isConnected();
+    if (typeof result === 'boolean') return result;
+    return result?.isConnected ?? false;
+  } catch {
+    return false;
+  }
 };
 
+/**
+ * Request wallet access and return the user's public key.
+ */
 export const retrievePublicKey = async () => {
   const accessObj = await requestAccess();
-  // if accessObj is a string, then it directly returns the address.
   if (typeof accessObj === 'string') return accessObj;
-  if (accessObj.error) throw new Error(accessObj.error.message);
+  if (accessObj?.error) throw new Error(accessObj.error.message || "Access denied");
   return accessObj.address;
 };
 
+/**
+ * Get the XLM balance of the connected wallet.
+ */
 export const getBalance = async () => {
   const addressObj = await getAddress();
+  if (addressObj?.error) throw new Error(addressObj.error.message);
   const address = typeof addressObj === 'string' ? addressObj : addressObj.address;
-  if (addressObj.error) throw new Error(addressObj.error.message);
   const account = await server.loadAccount(address);
   const xlmBalance = account.balances.find((b) => b.asset_type === "native");
   return xlmBalance ? xlmBalance.balance : "0";
 };
 
+/**
+ * Send XLM from the connected wallet to a destination address.
+ * Uses a simple, valid payment transaction (no self-sponsorship).
+ */
 export const sendXLM = async (destination, amount) => {
   const addressObj = await getAddress();
+  if (addressObj?.error) throw new Error(addressObj.error.message);
   const sourcePublicKey = typeof addressObj === 'string' ? addressObj : addressObj.address;
-  if (addressObj.error) throw new Error(addressObj.error.message);
+
   const sourceAccount = await server.loadAccount(sourcePublicKey);
-  // Level 6: Implementing Fee Sponsorship
-  // In a real production scenario, the sponsoring account signs last.
-  // For demo, we are using the source account as its own sponsor to show the mechanism,
-  // but this can be changed to a dedicated 'GasChain Treasury' account.
+
   const transaction = new StellarSdk.TransactionBuilder(sourceAccount, {
-    fee: "0", // Sponsored fee
+    fee: StellarSdk.BASE_FEE, // 100 stroops minimum fee for 1 operation
     networkPassphrase,
   })
-    .addOperation(
-      StellarSdk.Operation.beginSponsoringFutureReserves({
-        sponsoredId: sourcePublicKey,
-      })
-    )
     .addOperation(
       StellarSdk.Operation.payment({
         destination: destination,
@@ -51,21 +62,25 @@ export const sendXLM = async (destination, amount) => {
         amount: amount.toString(),
       })
     )
-    .addOperation(StellarSdk.Operation.endSponsoringFutureReserves())
-    .setTimeout(30)
+    .setTimeout(180) // 3 minutes for the user to sign
     .build();
+
   const signedResult = await signTransaction(transaction.toXDR(), { networkPassphrase });
+  if (signedResult?.error) throw new Error(signedResult.error.message || "Signing failed");
+
   const signedTxXdr = typeof signedResult === 'string' ? signedResult : signedResult.signedTxXdr;
-  if (signedResult.error) throw new Error(signedResult.error.message);
   const signedTransaction = StellarSdk.TransactionBuilder.fromXDR(signedTxXdr, networkPassphrase);
+
   try {
     const res = await server.submitTransaction(signedTransaction);
     return res;
   } catch (error) {
-    console.error("Stellar Submission Error:", error.response?.data || error);
-    if (error.response?.data?.extras?.result_codes) {
-      const codes = error.response.data.extras.result_codes;
-      throw new Error(`Transaction Failed: ${codes.transaction}${codes.operations ? ' (' + codes.operations.join(', ') + ')' : ''}`);
+    const errData = error.response?.data;
+    console.error("Stellar Submission Error:", errData ? JSON.stringify(errData, null, 2) : error);
+    if (errData?.extras?.result_codes) {
+      const codes = errData.extras.result_codes;
+      const opCodes = codes.operations ? ` (${codes.operations.join(', ')})` : '';
+      throw new Error(`Transaction Failed: ${codes.transaction}${opCodes}`);
     }
     throw error;
   }

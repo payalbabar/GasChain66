@@ -52,3 +52,4 @@ const getAppParams = () => {
 export const appParams = {
 	...getAppParams()
 }
+console.log('App Params initialized:', appParams);

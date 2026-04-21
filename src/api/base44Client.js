@@ -11,15 +11,18 @@ if (appId === 'test-app-id' || !appId) {
 }
 
 //Create a client with authentication required
-const realClient = createClient({
-  appId,
-  token,
-  functionsVersion,
-  serverUrl: '',
-  requiresAuth: false,
-  appBaseUrl
-});
+// Create a client ONLY if we have a valid appId (not null or test-app-id)
+const realClient = (appId && appId !== 'test-app-id' && appId !== 'null' && appId !== 'undefined') 
+  ? createClient({
+      appId,
+      token,
+      functionsVersion,
+      serverUrl: '',
+      requiresAuth: false,
+      appBaseUrl
+    })
+  : null;
 
-console.log('Base44 Client Initialized with App ID:', appId, 'Using Mock:', (appId === 'test-app-id' || !appId));
-export const base44 = (appId === 'test-app-id' || !appId) ? mockBase44 : realClient;
+console.log('Base44 Client Initialized. App ID:', appId, 'Using Mock:', !realClient);
+export const base44 = realClient || mockBase44;
 
