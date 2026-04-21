@@ -142,9 +142,9 @@ To eliminate the barrier of entry for new users (acquiring XLM for gas fees), Ga
 - **Implementation**: See `src/lib/freighter.js`.
 
 ## 📈 Monitoring, Indexing & Scalability
-- **Live Metrics Dashboard**: [View Real-time Data](/dashboard/metrics)
-- **Data Indexing Approach**: GasChain indexes all supply chain events into an immutable linked list. We fetch and aggregate this indexed blockchain data in real-time on our [Blockchain Ledger](/dashboard/ledger) endpoint to show verified chains and blocks.
-- **Production Monitoring**: System health, active nodes, and data synchronization status are tracked on our [Monitoring Dashboard](/dashboard/metrics).
+- **Live Metrics Dashboard**: [View Real-time Data](https://splendorous-clafoutis-f7b51c.netlify.app/dashboard/metrics)
+- **Data Indexing Approach**: GasChain indexes all supply chain events into an immutable linked list. We fetch and aggregate this indexed blockchain data in real-time on our [Blockchain Ledger](https://splendorous-clafoutis-f7b51c.netlify.app/dashboard/ledger) endpoint to show verified chains and blocks.
+- **Production Monitoring**: System health, active nodes, and data synchronization status are tracked on our [Monitoring Dashboard](https://splendorous-clafoutis-f7b51c.netlify.app/dashboard/metrics).
     - *Screenshot Proof*: ![Monitoring Dashboard](https://raw.githubusercontent.com/payalbabar/lpg_connectWallet/main/public/screenshots/dashboard.png)
 - **Security Audit**: [Check completed Security Checklist](./SECURITY_CHECKLIST.md)
 - **Community Impact**: [View Project Announcement on X (Twitter)](https://x.com/babar_payal/status/2046551540832325888?s=20)
